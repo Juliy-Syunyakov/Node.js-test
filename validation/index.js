@@ -13,5 +13,13 @@ module.exports = {
     email: joi
         .string()
         .email()
-        .error(new Error('Email некорректен'))
+        .error(new Error('Email некорректен')),
+    serialNumber: joi
+        .string()
+        .min(8, 'utf8')
+        .max(20, 'utf8')
+        .error(new Error('Серийный номер некорректный')),
+    token: joi
+        .string()
+        .error(new Error('Неверный токен'))      
 }

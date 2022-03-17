@@ -17,3 +17,4 @@ try {
 }catch(error){
     console.error('Unable to connect or sync to the database:', error);
 }
+module.exports = sequelize

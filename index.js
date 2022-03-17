@@ -8,6 +8,7 @@ let card = 45
 app.use(cors())
 app.use(bodyParser.json())
 const dbService = require('./services/dbService')
+const TCPController = require('./controllers/TCPController')
 const templates = {
     index:path.join(__dirname,'templates','index.html'),
     account:path.join(__dirname,'templates','account.html'),
