@@ -3,6 +3,7 @@ const key = 'meAEuX'
 
 class JwtController{
     getUserId(token){
+        console.log(token)
         const decoded = jwt.verify(token, key)
         return decoded.id
     }

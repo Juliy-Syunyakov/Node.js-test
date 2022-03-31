@@ -41,5 +41,23 @@ class AuthController{
             res.json(error)
         }
     }
+    async auth(req, res, next){
+        console.log(req.body)
+        try{
+            const userId = JwtController.getUserId(req.body.token)
+            console.log(userId)
+            debugger
+            const user = await User.findOne({where: {id: userId}})
+            if (!user){
+                res.json({error: 'user not found'})
+               
+            }else{               
+                res.json({user})               
+            }
+          
+        }catch(error){
+            res.json(error)
+        }
+    }
 }
 module.exports = new AuthController()

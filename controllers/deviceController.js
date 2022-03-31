@@ -22,5 +22,16 @@ class DeviceController{
             res.json(error)
         }
     }
+    async getAll(req, res, next){
+        try{
+            const userId = JwtController.getUserId(req.body.token)
+            const devices = await Device.findAll({where: {UserId: userId}})
+            res.json(devices)
+            
+
+        }catch(error){
+            res.json(error)
+        }
+    }
 }
 module.exports = new DeviceController()
