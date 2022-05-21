@@ -25,5 +25,18 @@ module.exports = {
             next()
         }
     },
-
+    async getDeviceData(req,res,next){
+        const schema = joi.object({
+            token:valid.token,
+            DeviceId:valid.id,
+            date: valid.date,
+            sensorType: valid.sensorType
+        })
+        const {error} = schema.validate(req.body)
+        if (error){
+            res.status(400).send({error: error.message})
+        }else{
+            next()
+        }
+    }
 }

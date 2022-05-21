@@ -1,7 +1,7 @@
 const {User} = require('../services/dbService').models
 const Sequelize = require('sequelize')
 const bcrypt = require('bcrypt')
-const jwtController = require('./jwtController')
+const JwtController = require('./jwtController')
 class AuthController{
     async login(req, res, next){
         try{
@@ -12,7 +12,7 @@ class AuthController{
             }else{
                 
                 if (bcrypt.compareSync(req.body.password, user.password)){
-                    const token = jwtController.generateToken(user.id)
+                    const token = JwtController.generateToken(user.id)
                     res.json({user, token:token})
                 }
                 else{
