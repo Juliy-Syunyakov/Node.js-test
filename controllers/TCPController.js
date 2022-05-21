@@ -21,15 +21,16 @@ server.on('connection', (stream)=>{
     stream.on('data', async (data)=>{
         const str_data = `${data}`
         console.log(str_data)
-        return
-        if (str_data.indexOf(TCPHelper.omega_descriptor) > 0){
-            const sn = str_data.substring(2, 11)
+        
+        if (str_data.indexOf(TCPHelper.omega_descriptor) >= 0){
+            const sn = str_data.substring(13, 15)
             device = await deviceController.getDeviceBySerialNumber(sn)
-            console.log('is omega')
+            console.log('is M2')
             console.log(device)
-            console.log(str_data.substring(2, 11))
+            console.log(str_data.substring(13, 15))
         }
         else{
+            return
             const parsedData = parserService.parseCommand(str_data)
             console.log(parsedData)
             const newState = await DeviceData.create({
