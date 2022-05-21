@@ -26,6 +26,9 @@ class DeviceController{
             res.json(error)
         }
     }
+    async updateDevice(deviceId, phone_number){
+        await Device.update( {updatedAt:new Date(), phone_number: phone_number},{where: {id: deviceId}})
+    }
     async getAll(req, res, next){
         try{
             const userId = JwtController.getUserId(req.body.token)

@@ -23,11 +23,16 @@ server.on('connection', (stream)=>{
         console.log(str_data)
         
         if (str_data.indexOf(TCPHelper.omega_descriptor) >= 0){
-            const sn = str_data.substring(13, 15)
+            const sn = str_data.substring(13, 28)
             device = await deviceController.getDeviceBySerialNumber(sn)
+            if(device){
+
+                const phone_number = str_data.substring(52,  62)
+                await deviceController.updateDevice(device.id, phone_number)
+            }
             console.log('is M2')
             console.log(device)
-            console.log(str_data.substring(13, 15))
+            console.log(str_data.substring(13, 28))
         }
         else{
             return

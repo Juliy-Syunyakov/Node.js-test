@@ -10,6 +10,10 @@ module.exports = (sequelize, DataTypes)=>{
             type:DataTypes.STRING, 
             allowNull:false
         },
+        phone_number:{
+            type:DataTypes.STRING, 
+            allowNull:false
+        },
         name:{
             type:DataTypes.STRING, 
             allowNull:false
